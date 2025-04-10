@@ -8,7 +8,7 @@ import Login from "./pages/Login";
 import CityList from "./components/CityList";
 import { useEffect, useState } from "react";
 
-const BASE_URL = "http://localhost:9001/cities";
+const BASE_URL = "http://localhost:9002/cities";
 
 function App() {
   const [cities, setCities] = useState([]);
