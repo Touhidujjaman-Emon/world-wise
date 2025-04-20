@@ -12,8 +12,6 @@ import CountriesList from "./components/CountriesList";
 import City from "./components/City";
 import Form from "./components/Form";
 
-const BASE_URL = "http://localhost:9002/cities";
-
 function App() {
   const [cities, setCities] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -41,15 +39,9 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="app" element={<AppLayOut />}>
           <Route index element={<Navigate replace to="cities" />} />
-          <Route
-            path="cities"
-            element={<CityList isLoading={isLoading} cities={cities} />}
-          />
+          <Route path="cities" element={<CityList />} />
           <Route path="cities/:Id" element={<City />} />
-          <Route
-            path="countries"
-            element={<CountriesList cities={cities} isLoading={isLoading} />}
-          />
+          <Route path="countries" element={<CountriesList />} />
           <Route path="form" element={<Form />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
