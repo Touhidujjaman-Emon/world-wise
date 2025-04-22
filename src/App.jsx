@@ -1,5 +1,4 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { useEffect, useState } from "react";
 
 import Product from "./pages/Product";
 import Homepage from "./pages/Homepage";
@@ -14,23 +13,6 @@ import Form from "./components/Form";
 import { CitiesProvider } from "./Contexts/CitiesContext";
 
 function App() {
-  const [cities, setCities] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  useEffect(function () {
-    async function fetchData() {
-      try {
-        setIsLoading(true);
-        const response = await fetch(BASE_URL);
-        const data = await response.json();
-        setCities(data);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    fetchData();
-  }, []);
   return (
     <CitiesProvider>
       <BrowserRouter>
