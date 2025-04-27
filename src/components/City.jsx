@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useCities } from "../Contexts/CitiesContext";
 import styles from "./City.module.css";
 import { useParams } from "react-router-dom";
+import Spinner from "./Spinner";
+import BackButton from "./BackButton";
 
 const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
@@ -13,7 +15,7 @@ const formatDate = (date) =>
 
 function City() {
   const { Id } = useParams();
-  const { getCity, currentCity } = useCities();
+  const { getCity, currentCity, isLoading } = useCities();
 
   useEffect(
     function () {
@@ -21,6 +23,8 @@ function City() {
     },
     [Id]
   );
+
+  if (isLoading) return <Spinner />;
 
   // // TEMP DATA
   // const currentCity = {
@@ -65,7 +69,9 @@ function City() {
         </a>
       </div>
 
-      <div></div>
+      <div>
+        <BackButton />
+      </div>
     </div>
   );
 }
