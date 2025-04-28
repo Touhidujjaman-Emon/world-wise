@@ -36,3 +36,7 @@
 :global(.leaflet-popup-content-wrapper) {
   border-left: 5px solid var(--color-brand--2);
 }
+
+/* .mapContainer {
+  height: 400px; /* or 100vh, whatever fits your layout */
+width: 100%;
