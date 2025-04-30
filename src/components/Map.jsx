@@ -1,9 +1,17 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  useMap,
+  useMapEvents,
+} from "react-leaflet";
+
 import L from "leaflet";
 import styles from "./Map.module.css";
 import "leaflet/dist/leaflet.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCities } from "../Contexts/CitiesContext";
 
 // Import marker images as ES modules
@@ -21,11 +29,20 @@ L.Icon.Default.mergeOptions({
 
 export default function Map() {
   const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
-  const lat = parseFloat(searchParams.get("lat")) || 0;
-  const lng = parseFloat(searchParams.get("lng")) || 0;
-  const [mapPosition, setMapPosition] = useState([lat || 40.7128, lng || 0]);
+
+  const lat = parseFloat(searchParams.get("lat"));
+  const lng = parseFloat(searchParams.get("lng"));
+  const [mapPosition, setMapPosition] = useState([38.72, -9.14]);
   const { cities } = useCities();
+
+  useEffect(
+    function () {
+      if (lat && lng) {
+        setMapPosition([lat, lng]);
+      }
+    },
+    [lat, lng]
+  );
 
   // Debugging cities data
   console.log("Fetched cities:", cities);
@@ -36,7 +53,7 @@ export default function Map() {
   }
 
   return (
-    <div className={styles.mapContainer} onClick={() => navigate("form")}>
+    <div className={styles.mapContainer}>
       <MapContainer
         center={mapPosition}
         zoom={13}
@@ -63,7 +80,22 @@ export default function Map() {
             </Marker>
           );
         })}
+        <ChangeCenter position={mapPosition} />
+        <DetectClick />
       </MapContainer>
     </div>
   );
+}
+
+function ChangeCenter({ position }) {
+  const map = useMap();
+  map.setView(position);
+  return null;
+}
+
+function DetectClick() {
+  const navigate = useNavigate();
+  useMapEvents({
+    click: (e) => navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`),
+  });
 }
