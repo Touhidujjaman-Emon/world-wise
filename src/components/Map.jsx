@@ -11,6 +11,10 @@ import {
 import L from "leaflet";
 import styles from "./Map.module.css";
 import "leaflet/dist/leaflet.css";
+
+import { useGeolocation } from "../hooks/geolocation";
+import Button from "./Button";
+
 import { useEffect, useState } from "react";
 import { useCities } from "../Contexts/CitiesContext";
 
@@ -35,6 +39,12 @@ export default function Map() {
   const [mapPosition, setMapPosition] = useState([38.72, -9.14]);
   const { cities } = useCities();
 
+  const {
+    isLoading: isLoadingPosition,
+    position: geolocationPosition,
+    getPosition,
+  } = useGeolocation();
+
   useEffect(
     function () {
       if (lat && lng) {
@@ -44,8 +54,14 @@ export default function Map() {
     [lat, lng]
   );
 
-  // Debugging cities data
-  console.log("Fetched cities:", cities);
+  useEffect(
+    function () {
+      if (geolocationPosition) {
+        setMapPosition([geolocationPosition.lat, geolocationPosition.lng]);
+      }
+    },
+    [geolocationPosition]
+  );
 
   // Guard against empty or invalid cities
   if (!cities || cities.length === 0) {
@@ -54,6 +70,11 @@ export default function Map() {
 
   return (
     <div className={styles.mapContainer}>
+      {!geolocationPosition && (
+        <Button type="position" onClick={getPosition}>
+          {isLoadingPosition ? "Loading..." : "Use your position"}
+        </Button>
+      )}
       <MapContainer
         center={mapPosition}
         zoom={13}
@@ -71,7 +92,7 @@ export default function Map() {
           }
           return (
             <Marker
-              position={[city.position.lat, city.position.lng]}
+              position={mapPosition || [city.position.lat, city.position.lng]}
               key={city.id}
             >
               <Popup>
