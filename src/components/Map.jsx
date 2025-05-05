@@ -22,6 +22,7 @@ import { useCities } from "../Contexts/CitiesContext";
 import iconUrl from "leaflet/dist/images/marker-icon.png";
 import iconRetinaUrl from "leaflet/dist/images/marker-icon-2x.png";
 import shadowUrl from "leaflet/dist/images/marker-shadow.png";
+import { useUrlPosition } from "../hooks/useUrlPosition";
 
 // Override Leaflet’s default icon options
 delete L.Icon.Default.prototype._getIconUrl;
@@ -32,10 +33,11 @@ L.Icon.Default.mergeOptions({
 });
 
 export default function Map() {
-  const [searchParams] = useSearchParams();
+  // const [searchParams] = useSearchParams();
 
-  const lat = parseFloat(searchParams.get("lat"));
-  const lng = parseFloat(searchParams.get("lng"));
+  // const lat = parseFloat(searchParams.get("lat"));
+  // const lng = parseFloat(searchParams.get("lng"));
+  const [lat, lng] = useUrlPosition();
   const [mapPosition, setMapPosition] = useState([38.72, -9.14]);
   const { cities } = useCities();
 
