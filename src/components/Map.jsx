@@ -94,7 +94,7 @@ export default function Map() {
           }
           return (
             <Marker
-              position={mapPosition || [city.position.lat, city.position.lng]}
+              position={[city.position.lat, city.position.lng]}
               key={city.id}
             >
               <Popup>
