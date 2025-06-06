@@ -6,7 +6,7 @@ import {
   useCallback,
 } from "react";
 
-const BASE_URL = "http://localhost:9002/cities";
+const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:9002/cities";
 
 const initialState = {
   cities: [],
