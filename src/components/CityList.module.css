@@ -13,3 +13,11 @@
 .cityList::-webkit-scrollbar {
   width: 0;
 }
+
+/* Mobile: reduce fixed height to fit compact sidebar panel */
+@media (max-width: 600px) {
+  .cityList {
+    height: 22dvh;
+    gap: 1rem;
+  }
+}

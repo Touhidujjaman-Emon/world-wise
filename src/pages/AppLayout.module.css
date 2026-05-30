@@ -5,3 +5,19 @@
   display: flex;
   position: relative;
 }
+
+/* Tablet: reduce padding */
+@media (max-width: 900px) {
+  .app {
+    padding: 1.6rem;
+  }
+}
+
+/* Mobile: stack sidebar on top of map (sidebar collapses, map fills rest) */
+@media (max-width: 600px) {
+  .app {
+    flex-direction: column;
+    padding: 0;
+    height: 100dvh;
+  }
+}

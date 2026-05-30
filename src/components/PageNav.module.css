@@ -2,6 +2,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .nav ul {
@@ -31,4 +33,29 @@ a.ctaLink:visited {
   color: var(--color-dark--0);
   padding: 0.8rem 2rem;
   border-radius: 7px;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .nav ul {
+    gap: 2rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .nav ul {
+    gap: 1.2rem;
+  }
+
+  .nav a:link,
+  .nav a:visited {
+    font-size: 1.3rem;
+  }
+
+  a.ctaLink:link,
+  a.ctaLink:visited {
+    padding: 0.6rem 1.2rem;
+    font-size: 1.3rem;
+  }
 }

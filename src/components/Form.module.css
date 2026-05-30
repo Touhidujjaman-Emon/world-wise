@@ -42,3 +42,19 @@
   font-family: inherit;
   font-size: 1.2rem;
 }
+
+/* Mobile: reduce padding */
+@media (max-width: 600px) {
+  .form {
+    padding: 1.4rem 1.6rem;
+    gap: 1.4rem;
+    max-height: 28dvh;
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+
+  .flag {
+    font-size: 2.2rem;
+    top: 2.4rem;
+  }
+}

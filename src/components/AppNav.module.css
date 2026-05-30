@@ -1,6 +1,7 @@
 .nav {
   margin-top: 3rem;
   margin-bottom: 2rem;
+  width: 100%;
 }
 
 .nav ul {
@@ -25,4 +26,27 @@
 /* CSS Modules feature */
 .nav a:global(.active) {
   background-color: var(--color-dark--0);
+}
+
+/* Mobile: tabs fill available width evenly */
+@media (max-width: 600px) {
+  .nav {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .nav ul {
+    width: 100%;
+  }
+
+  .nav ul li {
+    flex: 1;
+    text-align: center;
+  }
+
+  .nav a:link,
+  .nav a:visited {
+    width: 100%;
+    padding: 0.6rem 1rem;
+  }
 }

@@ -26,6 +26,13 @@ html {
   box-sizing: border-box;
 }
 
+/* Very small phones: slightly smaller base so rem values don't overflow */
+@media (max-width: 380px) {
+  html {
+    font-size: 56.25%;
+  }
+}
+
 body {
   font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI",
     "Segoe UI Emoji", sans-serif;

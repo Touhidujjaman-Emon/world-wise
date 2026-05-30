@@ -11,3 +11,12 @@
   align-content: start;
   gap: 1.6rem;
 }
+
+/* Mobile: single column, shorter height */
+@media (max-width: 600px) {
+  .countryList {
+    grid-template-columns: 1fr 1fr;
+    height: 22dvh;
+    gap: 1rem;
+  }
+}

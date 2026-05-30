@@ -65,10 +65,6 @@ export default function Map() {
     [geolocationPosition]
   );
 
-  // Guard against empty or invalid cities
-  if (!cities || cities.length === 0) {
-    return <div>No cities available</div>;
-  }
 
   return (
     <div className={styles.mapContainer}>

@@ -53,3 +53,20 @@
   font-size: 1.6rem;
   color: var(--color-brand--1);
 }
+
+/* Mobile: constrain city detail within compact sidebar panel */
+@media (max-width: 600px) {
+  .city {
+    max-height: 24dvh;
+    padding: 1.4rem 1.6rem;
+    gap: 1.2rem;
+  }
+
+  .city h3 {
+    font-size: 1.6rem;
+  }
+
+  .city p {
+    font-size: 1.4rem;
+  }
+}

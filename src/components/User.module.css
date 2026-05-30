@@ -32,3 +32,24 @@
   text-transform: uppercase;
   cursor: pointer;
 }
+
+/* Mobile: move to bottom-right over the map, scale down */
+@media (max-width: 600px) {
+  .user {
+    top: auto;
+    bottom: 2rem;
+    right: 1.2rem;
+    padding: 0.8rem 1rem;
+    font-size: 1.3rem;
+    gap: 1rem;
+  }
+
+  .user img {
+    height: 3rem;
+  }
+
+  .user button {
+    padding: 0.4rem 0.8rem;
+    font-size: 1.1rem;
+  }
+}
